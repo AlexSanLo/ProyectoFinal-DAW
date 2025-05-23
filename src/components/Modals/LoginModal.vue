@@ -65,7 +65,7 @@
   async function handleLogin() {
     try {
       await login(email.value, password.value);
-      await loadNotes(); // Carga las notas tras login
+      await loadNotes(); 
       emit("close");
     } catch (error) {
       alert("Error: " + error.message);

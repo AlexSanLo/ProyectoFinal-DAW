@@ -120,7 +120,6 @@ function closeModal() {
 
 function handleSaveSuccess({ note, index }) {
   if (index !== null && index !== undefined) {
-    // index ahora es el id de Firestore
     updateNote(note, index);
   } else {
     addNote(note);

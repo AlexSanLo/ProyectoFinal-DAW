@@ -45,7 +45,7 @@ function handleLogout() {
   signOut(auth)
     .then(() => {
       isLoggedIn.value = false;
-      clearNotes();      // Limpia las notas al cerrar sesión
+      clearNotes();   
       alert("Sesión cerrada exitosamente.");
     })
     .catch((error) => {
@@ -58,9 +58,9 @@ onMounted(() => {
   onAuthStateChanged(auth, (user) => {
     isLoggedIn.value = !!user;
     if (user) {
-      loadNotes();      // Carga las notas del usuario al loguear
+      loadNotes();     
     } else {
-      clearNotes();     // Limpia las notas si no hay usuario
+      clearNotes();   
     }
   });
 });

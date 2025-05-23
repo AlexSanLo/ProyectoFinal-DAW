@@ -17,7 +17,7 @@ export default function useNotes() {
   const auth = getAuth();
   const user = ref(null);
 
-  // 🔹 Detectar cambios en la autenticación y cargar notas automáticamente
+
   onAuthStateChanged(auth, (firebaseUser) => {
     user.value = firebaseUser;
     if (user.value) {
@@ -27,7 +27,7 @@ export default function useNotes() {
     }
   });
 
-  // 🔹 Cargar notas del usuario actual
+
   async function loadNotes() {
     try {
       if (!user.value) {
@@ -46,7 +46,7 @@ export default function useNotes() {
     }
   }
 
-  // 🔹 Agregar una nueva nota
+  
   async function addNote(note) {
     try {
       if (!user.value) throw new Error("No autenticado");
@@ -58,19 +58,17 @@ export default function useNotes() {
     }
   }
 
-  // 🔹 Iniciar sesión y cargar notas automáticamente
   async function login(email, password) {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       user.value = userCredential.user;
-      await loadNotes(); // 🔹 Se cargan las notas justo después del login
+      await loadNotes();
       return userCredential.user;
     } catch (error) {
       console.error("Error al iniciar sesión:", error.message);
     }
   }
 
-  // 🔹 Actualizar una nota
   async function updateNote(note, id) {
     try {
       await updateDoc(doc(db, "notes", id), note);
@@ -80,7 +78,7 @@ export default function useNotes() {
     }
   }
 
-  // 🔹 Eliminar una nota
+ 
   async function deleteNote(id) {
     try {
       await deleteDoc(doc(db, "notes", id));
@@ -90,7 +88,7 @@ export default function useNotes() {
     }
   }
 
-  // 🔹 Limpiar todas las notas (por ejemplo, al cerrar sesión)
+
   function clearNotes() {
     notes.value = [];
   }

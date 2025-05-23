@@ -7,7 +7,6 @@
   >
     <div :class="priorityClass" class="w-4 h-full rounded-l-lg"></div>
 
-    <!-- Estrella de favorito arriba a la derecha -->
     <button
       @click="$emit('toggleFavorite')"
       class="absolute top-3 right-3 z-10"

@@ -81,6 +81,7 @@ import GeneralSelect from "../Forms/GeneralSelect.vue";
 import GeneralInput from "../Forms/GeneralInput.vue";
 import CloseButton from "../Buttons/CloseButton.vue";
 import SaveButton from "../Buttons/SaveButton.vue";
+import { validateNote } from "../../composables/useNoteValidation";
 
 const props = defineProps({
   isModalOpen: Boolean,
@@ -113,12 +114,13 @@ const closeModal = () => {
 };
 
 const handleSaveSuccess = (payload) => {
-  // Validación de campos obligatorios
   if (
-    !noteTitle.value.trim() ||
-    !noteEtiquetas.value.trim() ||
-    !noteDescription.value.trim() ||
-    !noteType.value.trim()
+    !validateNote({
+      title: noteTitle.value,
+      etiquetas: noteEtiquetas.value,
+      description: noteDescription.value,
+      priority: noteType.value,
+    })
   ) {
     alert("Todos los campos son obligatorios.");
     return;

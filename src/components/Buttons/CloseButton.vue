@@ -15,6 +15,6 @@ import { defineEmits } from "vue";
 const emit = defineEmits(["close"]);
 
 const closeModal = () => {
-  emit("close"); // Emite evento para cerrar la modal
+  emit("close");
 };
 </script>

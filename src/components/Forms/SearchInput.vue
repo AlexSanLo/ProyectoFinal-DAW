@@ -7,7 +7,7 @@
       v-model="searchValue"
       @input="emitSearch"
       placeholder="Buscar..."
-      class="border border-[var(--color-black)] rounded-2xl mt-2 p-2 text-base w-full bg-[var(--color-white)] text-[var(--color-black)] dark:bg-[var(--color-white)] dark:text-[var(--color-white)]"
+      class="border border-[var(--color-black)] rounded-2xl mt-2 p-2 text-base w-full bg-[var(--color-white)] text-[var(--color-black)] dark:bg-[var(--color-white)] dark:text-[var(--color-black)]"
     />
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div
       v-if="props.isModalOpen" 
-      class="fixed inset-0 bg-[var(--color-black)] bg-opacity-50 flex items-center justify-center z-50"
+      class="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50"
       @keydown.esc="closeModal"
       tabindex="0"
       ref="modalContainer"
@@ -19,7 +19,7 @@
               id="email"
               type="email"
               v-model="email"
-              class="w-full mt-1 p-2 border border-[var(--color-black)] dark:border-[var(--color-white)] rounded-md bg-[var(--color-grey)] dark:bg-[var(--color-grey)] text-[var(--color-black)] dark:text-[var(--color-white)]"
+              class="w-full mt-1 p-2 border border-[var(--color-black)] dark:border-[var(--color-white)] rounded-md bg-[var(--color-grey)] dark:bg-[var(--color-white)] text-[var(--color-black)] dark:text-[var(--color-black)]"
               required
             />
           </div>
@@ -29,15 +29,15 @@
               id="password"
               type="password"
               v-model="password"
-              class="w-full mt-1 p-2 border border-[var(--color-black)] dark:border-[var(--color-white)] rounded-md bg-[var(--color-grey)] dark:bg-[var(--color-grey)] text-[var(--color-black)] dark:text-[var(--color-white)]"
+              class="w-full mt-1 p-2 border border-[var(--color-black)] dark:border-[var(--color-white)] rounded-md bg-[var(--color-grey)] dark:bg-[var(--color-white)] text-[var(--color-black)] dark:text-[var(--color-black)]"
               required
             />
           </div>
           <div class="flex justify-between">
-            <button type="button" @click="handleSignUp" class="px-4 py-2 bg-[var(--color-green)] text-[var(--color-white)] rounded-md">
+            <button type="button" @click="handleSignUp" class="px-4 py-2 bg-green-500 text-[var(--color-white)] rounded-md">
               Register
             </button>
-            <button type="submit" class="px-4 py-2 bg-[var(--color-blue-medium)] text-[var(--color-white)] rounded-md">
+            <button type="submit" class="px-4 py-2 bg-[var(--color-blue-strong)] text-[var(--color-white)] rounded-md">
               Login
             </button>
           </div>

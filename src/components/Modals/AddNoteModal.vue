@@ -1,0 +1,129 @@
+<template>
+  <section
+    v-if="isModalOpen"
+    class="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50"
+  >
+    <div
+      class="p-8 rounded-lg w-[94vw] max-w-3xl md:w-full mx-auto relative
+             bg-[var(--color-white)] dark:bg-[var(--color-black)]
+             border border-[var(--color-semi-black)] shadow-lg"
+    >
+      <button
+        @click="closeModal"
+        class="absolute top-2 right-2 text-xl font-bold text-[var(--color-black)] dark:text-[var(--color-white)]"
+      >
+        &times;
+      </button>
+
+      <h2 class="text-2xl font-semibold mb-0 text-[var(--color-black)] dark:text-[var(--color-white)]">
+        {{ editIndex !== null ? "Editar Nota" : "Crear una nueva nota" }}
+      </h2>
+      <hr class="w-1/3 border-2 mb-4 border-[var(--color-blue)]" />
+
+      <div class="space-y-8">
+        <GeneralSelect
+          label="Prioridad"
+          id="noteType"
+          :options="['Alta', 'Media', 'Baja', 'Sin Prioridad']"
+          v-model="noteType"
+        />
+
+        <div class="flex gap-4">
+          <GeneralInput
+            label="Título"
+            id="noteTitle"
+            type="text"
+            placeholder="Título..."
+            v-model="noteTitle"
+            class="flex-1"
+          />
+          <GeneralInput
+            label="Etiquetas"
+            id="noteEtiquetas"
+            type="text"
+            placeholder="Etiquetas..."
+            v-model="noteEtiquetas"
+            class="flex-1"
+          />
+        </div>
+
+        <GeneralInput
+          label="Descripción"
+          id="noteDescription"
+          type="textarea"
+          placeholder="Descripción..."
+          v-model="noteDescription"
+        />
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <SaveButton
+          :inputs="{
+            noteTitle: noteTitle,
+            noteEtiquetas: noteEtiquetas,
+            noteDescription: noteDescription,
+            timestamp: noteTimestamp,
+            index: editIndex,
+          }"
+          :selectValue="noteType"
+          @saveSuccess="handleSaveSuccess"
+        />
+
+        <CloseButton @close="closeModal" class="ml-auto" />
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref, watch, defineProps, defineEmits } from "vue";
+import GeneralSelect from "../Forms/GeneralSelect.vue";
+import GeneralInput from "../Forms/GeneralInput.vue";
+import CloseButton from "../Buttons/CloseButton.vue";
+import SaveButton from "../Buttons/SaveButton.vue";
+
+const props = defineProps({
+  isModalOpen: Boolean,
+  noteData: Object,
+  editIndex: Number,
+});
+
+const emit = defineEmits(["close", "saveSuccess"]);
+
+const noteTitle = ref("");
+const noteEtiquetas = ref("");
+const noteDescription = ref("");
+const noteType = ref("Sin Prioridad");
+const noteTimestamp = ref("");
+
+watch(() => props.noteData, (newData) => {
+  if (newData) {
+    noteTitle.value = newData.title;
+    noteEtiquetas.value = newData.etiquetas;
+    noteDescription.value = newData.description;
+    noteType.value = newData.priority || "Sin Prioridad";
+    noteTimestamp.value = newData.timestamp;
+  } else {
+    noteType.value = "Sin Prioridad";
+  }
+}, { immediate: true });
+
+const closeModal = () => {
+  emit("close");
+};
+
+const handleSaveSuccess = (payload) => {
+  // Validación de campos obligatorios
+  if (
+    !noteTitle.value.trim() ||
+    !noteEtiquetas.value.trim() ||
+    !noteDescription.value.trim() ||
+    !noteType.value.trim()
+  ) {
+    alert("Todos los campos son obligatorios.");
+    return;
+  }
+  emit("saveSuccess", payload); 
+  closeModal();
+};
+</script>

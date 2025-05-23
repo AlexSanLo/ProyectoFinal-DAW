@@ -2,7 +2,7 @@
   <section>
     <button
       @click="saveData"
-      class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md"
+      class="px-4 py-2 bg-[var(--color-blue-medium)] hover:bg-[var(--color-blue-strong)] text-[var(--color-white)] font-semibold rounded-lg shadow-md"
     >
       Guardar
     </button>

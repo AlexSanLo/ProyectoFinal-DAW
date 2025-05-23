@@ -2,7 +2,7 @@
   <section>
     <button
       @click="closeModal"
-      class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md"
+      class="px-4 py-2 bg-[var(--color-red)] hover:bg-[var(--color-black)] text-[var(--color-white)] font-semibold rounded-lg shadow-md"
     >
       Volver
     </button>

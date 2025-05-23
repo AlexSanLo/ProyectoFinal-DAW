@@ -10,10 +10,10 @@
         <h1 class="text-2xl font-bold">NoteEasy</h1>
       </div>
       <div class="flex items-center">
-        <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-4 bg-white px-4 py-2 rounded-md shadow-md">
+        <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-4 bg-[var(--color-white)] px-4 py-2 rounded-md shadow-md">
           Login/Register
         </button>
-        <button v-else @click="handleLogout" class="mr-4 bg-red-500 text-white px-4 py-2 rounded-md shadow-md">
+        <button v-else @click="handleLogout" class="mr-4 bg-[var(--color-red)] text-[var(--color-white)] px-4 py-2 rounded-md shadow-md">
           Logout
         </button>
       </div>

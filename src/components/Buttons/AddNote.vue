@@ -121,10 +121,12 @@ function closeModal() {
 function handleSaveSuccess({ note, index }) {
   if (index !== null && index !== undefined) {
     updateNote(note, index);
+    closeModal();
   } else {
-    addNote(note);
+    addNote(note)
+      .then(() => closeModal())
+      .catch(() => {}); 
   }
-  closeModal();
 }
 
 function deleteNoteById(id) {

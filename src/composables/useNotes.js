@@ -49,12 +49,13 @@ export default function useNotes() {
   
   async function addNote(note) {
     try {
-      if (!user.value) throw new Error("No autenticado");
+      if (!user.value) throw new Error("Para crear notas debes estar registrado/logueado");
       const noteWithUid = { ...note, uid: user.value.uid };
       const docRef = await addDoc(collection(db, "notes"), noteWithUid);
       notes.value.push({ id: docRef.id, ...noteWithUid });
     } catch (error) {
-      console.error("Error al agregar nota:", error.message);
+      alert(error.message); // Mostrará el mensaje si no está logueado
+      throw error;
     }
   }
 

@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="isModalOpen"
-    class="fixed inset-0 flex justify-center items-center z-50"
+    class="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50"
   >
     <div
       class="p-8 rounded-lg w-[94vw] max-w-3xl md:w-full mx-auto relative

@@ -34,6 +34,15 @@
             required
           />
         </div>
+        <div class="mb-4 flex items-center">
+          <input
+            id="keepLogged"
+            type="checkbox"
+            v-model="keepLogged"
+            class="mr-2 w-6 h-6"
+          />
+          <label for="keepLogged" class="text-md text-[var(--color-black)] dark:text-[var(--color-white)]">No cerrar sesión</label>
+        </div>
         <div class="flex justify-between">
           <button type="button" @click="handleSignUp" class="px-4 py-2 bg-green-500 text-[var(--color-white)] rounded-md shadow-md">
             Register
@@ -54,7 +63,7 @@
 
 <script setup>
 import { ref, watch, defineProps, defineEmits } from "vue";
-import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, sendPasswordResetEmail, setPersistence, browserLocalPersistence, browserSessionPersistence } from "firebase/auth";
 import useNotes from "../../composables/useNotes";
 
 const props = defineProps({
@@ -65,11 +74,18 @@ const emit = defineEmits(["close"]);
 
 const email = ref("");
 const password = ref("");
+const keepLogged = ref(false); // Por defecto desactivado
 const modalContainer = ref(null);
 const { login, loadNotes } = useNotes();
 
 async function handleLogin() {
+  if (!navigator.onLine) {
+    alert("No tienes conexión a internet. Conéctate para iniciar sesión.");
+    return;
+  }
   try {
+    const auth = getAuth();
+    await setPersistence(auth, keepLogged.value ? browserLocalPersistence : browserSessionPersistence);
     await login(email.value, password.value);
     await loadNotes(); 
     emit("close");
@@ -91,9 +107,12 @@ async function handleLogin() {
 }
 
 async function handleSignUp() {
+  if (!navigator.onLine) {
+    alert("No tienes conexión a internet. Conéctate para registrarte.");
+    return;
+  }
   const auth = getAuth();
   try {
-    // Validar si el email ya está registrado
     const methods = await fetchSignInMethodsForEmail(auth, email.value);
     if (methods.length > 0) {
       alert("Este email ya está registrado. Por favor, inicia sesión.");
@@ -114,6 +133,10 @@ function closeModal() {
 function handleResetPassword() {
   if (!email.value) {
     alert("Por favor, introduce tu email para poder enviar el correo de recuperación.");
+    return;
+  }
+  if (!navigator.onLine) {
+    alert("No tienes conexión a internet. Conéctate para recuperar la contraseña.");
     return;
   }
   const auth = getAuth();

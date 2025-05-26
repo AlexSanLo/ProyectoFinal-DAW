@@ -120,7 +120,7 @@ function closeModal() {
 
 function handleSaveSuccess({ note, index }) {
   if (index !== null && index !== undefined) {
-    updateNote(note, index); // index es el id de Firestore
+    updateNote(note, index); 
     closeModal();
   } else {
     addNote(note)
@@ -141,7 +141,7 @@ function editNoteById(id) {
 function toggleFavoriteById(id) {
   const note = notes.value.find(n => n.id === id);
   if (note) {
-    // Cambia el valor y actualiza en Firestore
+
     const updatedNote = { ...note, favorita: !note.favorita };
     updateNote(updatedNote, id);
   }

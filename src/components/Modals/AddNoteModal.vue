@@ -31,7 +31,6 @@
           :options="['Alta', 'Media', 'Baja', 'Sin Prioridad']"
           v-model="noteType"
         />
-
         <div class="flex gap-4">
           <GeneralInput
             label="Título"
@@ -50,7 +49,6 @@
             class="flex-1"
           />
         </div>
-
         <GeneralInput
           label="Descripción"
           id="noteDescription"
@@ -72,7 +70,6 @@
           :selectValue="noteType"
           @saveSuccess="handleSaveSuccess"
         />
-
         <CloseButton @close="closeModal" class="ml-auto" />
       </div>
     </div>

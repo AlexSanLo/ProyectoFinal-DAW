@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col lg:flex-row items-center justify-center gap-2 pb-2 bg-[var(--color-grey-page)] dark:bg-[var(--color-black)] xs:gap-1 xs:p-2">
-
     <div class="w-full flex flex-col items-center justify-center h-full mb-1 lg:mr-10">
       <h2 class="text-3xl font-semibold text-[var(--color-black)] dark:text-[var(--color-white)] mt-5 whitespace-nowrap text-center">
         Notas creadas
@@ -10,10 +9,7 @@
       </span>
       <hr class="border-2 border-[var(--color-blue)] dark:border-[var(--color-blue-strong)] w-44 mt-1" />
     </div>
-
-
     <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:justify-center">
-
       <div class="flex flex-row gap-2 md:gap-4 w-full justify-center">
         <GeneralSelect
           label="Prioridad"
@@ -23,7 +19,6 @@
           @change="emitFilter"
           class="w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
         />
-
         <GeneralSelect
           label="Etiquetas"
           id="tagsFilter"
@@ -33,14 +28,12 @@
           class="w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
         />
       </div>
-
       <div class="flex flex-row gap-2 w-full justify-center items-center">
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
           class="w-40 p-2 text-base md:w-60 md:p-5 md:text-base"
         />
-
         <button
           @click="toggleShowFavorites"
           :aria-label="showFavorites ? 'Mostrar todas las notas' : 'Mostrar solo favoritas'"
@@ -57,7 +50,6 @@
             <path d="M12 17.75l-6.172 3.245 1.179-6.873-5-4.873 6.9-1.002L12 2.25l3.093 6.997 6.9 1.002-5 4.873 1.179 6.873z"/>
           </svg>
         </button>
-
         <div class="flex flex-row items-center gap-1 mt-6">
           <span class="mr-2 text-sm md:text-base text-[var(--color-black)] dark:text-[var(--color-white)] whitespace-nowrap">Por fecha:</span>
           <button
@@ -66,7 +58,6 @@
             class="p-1 rounded transition"
             :class="orderBy === 'Más reciente' ? 'bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)]' : 'hover:bg-[var(--color-grey)] dark:hover:bg-[var(--color-semi-black)]'"
           >
-      
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
               :class="orderBy === 'Más reciente' ? 'text-[var(--color-black)] dark:text-[var(--color-white)]' : 'text-[var(--color-semi-black)] dark:text-[var(--color-grey)]'"
               fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,7 +70,6 @@
             class="p-1 rounded transition"
             :class="orderBy === 'Más antiguo' ? 'bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)]' : 'hover:bg-[var(--color-grey)] dark:hover:bg-[var(--color-semi-black)]'"
           >
-      
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
               :class="orderBy === 'Más antiguo' ? 'text-[var(--color-black)] dark:text-[var(--color-white)]' : 'text-[var(--color-semi-black)] dark:text-[var(--color-grey)]'"
               fill="none" viewBox="0 0 24 24" stroke="currentColor">

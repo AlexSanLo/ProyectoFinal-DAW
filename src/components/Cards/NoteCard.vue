@@ -8,7 +8,8 @@
     @click="showDetail"
   >
     <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"></div>
-
+    
+    <!-- Botón de la estrella para marcar como favorito -->
     <div class="absolute top-2 right-2 z-20">
       <button @click.stop="toggleFavorite" class="p-1 rounded-full focus:outline-none">
         <svg

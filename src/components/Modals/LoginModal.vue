@@ -43,7 +43,6 @@
           </button>
         </div>
       </form>
-      <!-- Enlace para restablecer la contraseña -->
       <div class="text-center mt-4">
         <a href="#" @click.prevent="handleResetPassword" class="text-sm text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] hover:underline">
           ¿Olvidaste tu contraseña?

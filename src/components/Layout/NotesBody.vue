@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col items-center pb-40 md:pb-0 w-full bg-[var(--color-grey-page)] dark:bg-[var(--color-black)]">
+    <ThemeToggle /> 
     <button
       @click="openModal(null, null)"
       class="fixed bottom-24 right-6 md:bottom-24 md:right-16 rounded-full 
@@ -50,6 +51,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
+import ThemeToggle from "../ThemeToggle/ThemeToggle.vue"; // Importa el ThemeToggle
 import AddNoteModal from "../Modals/AddNoteModal.vue";
 import Filtros from "../Layout/Filtros.vue";
 import NotesList from "../Layout/NotesList.vue";

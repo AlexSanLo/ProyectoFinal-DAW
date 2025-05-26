@@ -8,7 +8,6 @@ import NotesBody from "./components/Layout/NotesBody.vue";
 <template>
   <div class="min-h-screen flex flex-col">
     <Header />
-    <ThemeToggle />
     <main class="flex-1">
       <NotesBody />
     </main>

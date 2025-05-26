@@ -54,7 +54,7 @@
 
 <script setup>
 import { ref, watch, defineProps, defineEmits } from "vue";
-import { getAuth, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, sendPasswordResetEmail } from "firebase/auth";
 import useNotes from "../../composables/useNotes";
 
 const props = defineProps({
@@ -90,16 +90,21 @@ async function handleLogin() {
   }
 }
 
-function handleSignUp() {
+async function handleSignUp() {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      alert("Registro exitoso. Ahora puedes iniciar sesión.");
-      closeModal();
-    })
-    .catch((error) => {
-      alert("Error de registro: " + error.message);
-    });
+  try {
+    // Validar si el email ya está registrado
+    const methods = await fetchSignInMethodsForEmail(auth, email.value);
+    if (methods.length > 0) {
+      alert("Este email ya está registrado. Por favor, inicia sesión.");
+      return;
+    }
+    await createUserWithEmailAndPassword(auth, email.value, password.value);
+    alert("Registro exitoso. Ahora puedes iniciar sesión.");
+    closeModal();
+  } catch (error) {
+    alert("Error de registro: " + error.message);
+  }
 }
 
 function closeModal() {

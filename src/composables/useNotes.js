@@ -17,7 +17,6 @@ export default function useNotes() {
   const auth = getAuth();
   const user = ref(null);
 
-
   onAuthStateChanged(auth, (firebaseUser) => {
     user.value = firebaseUser;
     if (user.value) {
@@ -26,7 +25,6 @@ export default function useNotes() {
       notes.value = [];
     }
   });
-
 
   async function loadNotes() {
     try {
@@ -39,6 +37,7 @@ export default function useNotes() {
       notes.value = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
+        favorita: doc.data().favorita ?? false, // Asegura que siempre exista el campo favorita
       }));
       console.log("Notas cargadas:", notes.value);
     } catch (error) {
@@ -46,11 +45,10 @@ export default function useNotes() {
     }
   }
 
-  
   async function addNote(note) {
     try {
       if (!user.value) throw new Error("Para crear notas debes estar registrado/logueado");
-      const noteWithUid = { ...note, uid: user.value.uid };
+      const noteWithUid = { ...note, uid: user.value.uid, favorita: note.favorita ?? false };
       const docRef = await addDoc(collection(db, "notes"), noteWithUid);
       notes.value.push({ id: docRef.id, ...noteWithUid });
     } catch (error) {
@@ -80,7 +78,6 @@ export default function useNotes() {
     }
   }
 
- 
   async function deleteNote(id) {
     try {
       await deleteDoc(doc(db, "notes", id));
@@ -89,7 +86,6 @@ export default function useNotes() {
       console.error("Error al eliminar nota:", error.message);
     }
   }
-
 
   function clearNotes() {
     notes.value = [];

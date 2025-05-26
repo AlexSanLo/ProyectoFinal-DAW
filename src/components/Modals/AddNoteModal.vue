@@ -66,6 +66,7 @@
             noteDescription: noteDescription,
             timestamp: noteTimestamp,
             index: editIndex,
+            favorita: noteFavorita, 
           }"
           :selectValue="noteType"
           @saveSuccess="handleSaveSuccess"
@@ -97,6 +98,7 @@ const noteEtiquetas = ref("");
 const noteDescription = ref("");
 const noteType = ref("Sin Prioridad");
 const noteTimestamp = ref("");
+const noteFavorita = ref(false); // Añadido
 const modalSection = ref(null);
 
 watch(() => props.noteData, (newData) => {
@@ -106,8 +108,10 @@ watch(() => props.noteData, (newData) => {
     noteDescription.value = newData.description;
     noteType.value = newData.priority || "Sin Prioridad";
     noteTimestamp.value = newData.timestamp;
+    noteFavorita.value = newData.favorita ?? false;
   } else {
     noteType.value = "Sin Prioridad";
+    noteFavorita.value = false; 
   }
 }, { immediate: true });
 
@@ -138,6 +142,8 @@ const handleSaveSuccess = (payload) => {
     alert("Todos los campos son obligatorios.");
     return;
   }
+ 
+  payload.note.favorita = noteFavorita.value;
   emit("saveSuccess", payload); 
   closeModal();
 };

@@ -97,7 +97,7 @@ function onToggleFavorites(val) {
 function openModal(note = null, index = null) {
   if (note) {
     currentNote.value = { ...note };
-    editIndex.value = index;
+    editIndex.value = note.id; 
   } else {
     currentNote.value = {
       title: "",
@@ -118,7 +118,7 @@ function closeModal() {
 
 function handleSaveSuccess({ note, index }) {
   if (index !== null && index !== undefined) {
-    updateNote(note, index);
+    updateNote(note, index); // index es el id de Firestore
     closeModal();
   } else {
     addNote(note)
@@ -139,8 +139,9 @@ function editNoteById(id) {
 function toggleFavoriteById(id) {
   const note = notes.value.find(n => n.id === id);
   if (note) {
-    note.favorita = !note.favorita;
-    updateNote({ ...note }, id);
+    // Cambia el valor y actualiza en Firestore
+    const updatedNote = { ...note, favorita: !note.favorita };
+    updateNote(updatedNote, id);
   }
 }
 

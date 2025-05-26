@@ -5,6 +5,7 @@
       @keydown.esc="closeModal"
       tabindex="0"
       ref="modalContainer"
+      @mousedown.self="closeModal"
     >
       <div
         class="bg-[var(--color-white)] dark:bg-[var(--color-semi-black)] p-6 rounded-lg shadow-lg w-96 relative border border-[var(--color-black)] dark:border-[var(--color-grey)]"
@@ -68,7 +69,19 @@
       await loadNotes(); 
       emit("close");
     } catch (error) {
-      alert("Error: " + error.message);
+      if (
+        error.code === "auth/invalid-credential" ||
+        (error.message && error.message.includes("invalid-credential"))
+      ) {
+        alert("El usuario o la contraseña no son correctos. Si no tienes cuenta, regístrate primero.");
+      } else if (
+        error.code === "auth/user-not-found" ||
+        (error.message && error.message.includes("user-not-found"))
+      ) {
+        alert("Debes registrarte antes de iniciar sesión.");
+      } else {
+        alert("Error: " + (error.message || error));
+      }
     }
   }
   

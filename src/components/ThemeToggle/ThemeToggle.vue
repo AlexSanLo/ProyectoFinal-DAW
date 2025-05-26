@@ -1,7 +1,7 @@
 <template>
   <button
     @click="toggleTheme"
-    class="fixed bottom-32 left-6 md:bottom-24 md:left-16 rounded-full 
+    class="fixed bottom-24 left-6 md:bottom-24 md:left-16 rounded-full 
            w-12 h-12 md:w-16 md:h-16 
            bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)] 
            text-[var(--color-black)] dark:text-[var(--button-text-light)] flex items-center justify-center gap-2 shadow-lg z-50"

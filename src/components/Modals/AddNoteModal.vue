@@ -1,11 +1,15 @@
 <template>
   <section
     v-if="isModalOpen"
+    ref="modalSection"
     class="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50"
+    @mousedown.self="closeModal"
+    @keydown.esc="closeModal"
+    tabindex="0"
   >
     <div
       class="p-8 rounded-lg w-[94vw] max-w-3xl md:w-full mx-auto relative
-             bg-[var(--color-white)] dark:bg-[var(--color-black)]
+             bg-[var(--color-white)] dark:bg-[var(--color-semi-black)]
              border border-[var(--color-semi-black)] shadow-lg"
     >
       <button
@@ -76,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from "vue";
+import { ref, watch, defineProps, defineEmits, nextTick } from "vue";
 import GeneralSelect from "../Forms/GeneralSelect.vue";
 import GeneralInput from "../Forms/GeneralInput.vue";
 import CloseButton from "../Buttons/CloseButton.vue";
@@ -96,6 +100,7 @@ const noteEtiquetas = ref("");
 const noteDescription = ref("");
 const noteType = ref("Sin Prioridad");
 const noteTimestamp = ref("");
+const modalSection = ref(null);
 
 watch(() => props.noteData, (newData) => {
   if (newData) {
@@ -108,6 +113,17 @@ watch(() => props.noteData, (newData) => {
     noteType.value = "Sin Prioridad";
   }
 }, { immediate: true });
+
+watch(
+  () => props.isModalOpen,
+  (open) => {
+    if (open) {
+      nextTick(() => {
+        modalSection.value?.focus();
+      });
+    }
+  }
+);
 
 const closeModal = () => {
   emit("close");

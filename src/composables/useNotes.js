@@ -54,7 +54,7 @@ export default function useNotes() {
       const docRef = await addDoc(collection(db, "notes"), noteWithUid);
       notes.value.push({ id: docRef.id, ...noteWithUid });
     } catch (error) {
-      alert(error.message); // Mostrará el mensaje si no está logueado
+      alert(error.message); 
       throw error;
     }
   }
@@ -67,6 +67,7 @@ export default function useNotes() {
       return userCredential.user;
     } catch (error) {
       console.error("Error al iniciar sesión:", error.message);
+      throw error; 
     }
   }
 

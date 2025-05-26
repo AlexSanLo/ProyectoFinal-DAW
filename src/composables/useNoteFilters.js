@@ -25,7 +25,6 @@ export default function useNoteFilters(notes, filterPriority, filterTag, searchQ
       return matchesPriority && matchesTag && matchesSearch;
     });
 
-    // Ordenar por fecha
     if (orderBy && orderBy.value) {
       filtered = filtered.slice().sort((a, b) => {
         if (orderBy.value === "Más reciente") {

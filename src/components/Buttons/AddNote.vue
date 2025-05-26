@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center pb-40 md:pb-0 w-full bg-[var(--color-grey-page)] dark:bg-[var(--color-black)]">
     <button
       @click="openModal(null, null)"
-      class="fixed bottom-32 right-6 md:bottom-24 md:right-16 rounded-full 
+      class="fixed bottom-24 right-6 md:bottom-24 md:right-16 rounded-full 
              w-12 h-12 md:w-16 md:h-16 
              bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)] 
              text-[var(--color-black)] dark:text-[var(--color-white)] flex items-center justify-center gap-2 shadow-lg z-50"
@@ -43,11 +43,20 @@
         v-for="note in filteredNotes" 
         :key="note.id" 
         :note="note" 
+        @showDetail="openDetailModal"
         @delete="deleteNoteById(note.id)"
         @edit="editNoteById(note.id)"
         @toggleFavorite="toggleFavoriteById(note.id)"
       />
     </TransitionGroup>
+
+    <NoteDetailModal
+      v-if="isDetailModalOpen"
+      :note="selectedNote"
+      @close="isDetailModalOpen = false"
+      @edit="editNoteById(selectedNote.id)"
+      @delete="deleteNoteById(selectedNote.id)"
+    />
   </div>
 </template>
 
@@ -56,6 +65,7 @@ import { ref, onMounted, computed } from "vue";
 import AddModal from "../Modals/AddNoteModal.vue";
 import Filtros from "../Layout/Filtros.vue";
 import NoteCard from "../Cards/NoteCard.vue";
+import NoteDetailModal from "../Modals/NoteDetailModal.vue";
 import useNotes from "../../composables/useNotes";
 import useNoteFilters from "../../composables/useNoteFilters";
 
@@ -107,7 +117,7 @@ function openModal(note = null, index = null) {
       description: "",
       priority: "Sin Prioridad",
       timestamp: "",
-      favorita: false,
+      favorita: false, 
     };
     editIndex.value = null;
   }
@@ -138,12 +148,22 @@ function editNoteById(id) {
   if (note) openModal(note, id);
 }
 
-function toggleFavoriteById(timestamp) {
-  const idx = findNoteIndexByTimestamp(timestamp);
-  if (idx !== -1) {
-    notes.value[idx].favorita = !notes.value[idx].favorita;
-    localStorage.setItem("notes", JSON.stringify(notes.value));
+function toggleFavoriteById(id) {
+  const note = notes.value.find(n => n.id === id);
+  if (note) {
+ 
+    note.favorita = !note.favorita;
+
+    updateNote({ ...note }, id);
   }
+}
+
+const isDetailModalOpen = ref(false);
+const selectedNote = ref(null);
+
+function openDetailModal(note) {
+  selectedNote.value = note;
+  isDetailModalOpen.value = true;
 }
 
 onMounted(loadNotes);

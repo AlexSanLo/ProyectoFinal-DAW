@@ -5,10 +5,10 @@
   >
     <div
       class="flex flex-col p-4 rounded-lg shadow-md
-        w-[95vw] max-w-sm md:max-w-md
-        min-h-[180px] md:min-h-[200px] relative mx-2 mb-8
-        bg-[var(--color-white)] dark:bg-[var(--color-grey)]
-        overflow-hidden"
+       w-full max-w-[370px] mx-2
+       min-h-[180px] md:min-h-[200px] relative mb-8
+       bg-[var(--color-white)] dark:bg-[var(--color-grey)]
+       cursor-pointer"
       ref="modalRef"
     >
       <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"></div>

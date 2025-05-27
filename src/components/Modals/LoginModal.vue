@@ -74,7 +74,7 @@ const emit = defineEmits(["close"]);
 
 const email = ref("");
 const password = ref("");
-const keepLogged = ref(false); // Por defecto desactivado
+const keepLogged = ref(false); 
 const modalContainer = ref(null);
 const { login, loadNotes } = useNotes();
 

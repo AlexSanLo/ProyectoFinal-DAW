@@ -32,24 +32,28 @@
           v-model="noteType"
         />
         <div class="flex gap-2 w-full">
-          <GeneralInput
-            label="Título"
-            id="noteTitle"
-            type="text"
-            placeholder="Título..."
-            v-model="noteTitle"
-            class="w-1/2 min-w-0 truncate text-sm"
-            label-class="text-xs"
-          />
-          <GeneralInput
-            label="Etiquetas"
-            id="noteEtiquetas"
-            type="text"
-            placeholder="Etiquetas..."
-            v-model="noteEtiquetas"
-            class="w-1/2 min-w-0 truncate text-sm"
-            label-class="text-xs"
-          />
+          <div class="w-1/2 min-w-0">
+            <GeneralInput
+              label="Título"
+              id="noteTitle"
+              type="text"
+              placeholder="Título..."
+              v-model="noteTitle"
+              class="w-full text-sm"
+              label-class="text-xs"
+            />
+          </div>
+          <div class="w-1/2 min-w-0">
+            <GeneralInput
+              label="Etiquetas"
+              id="noteEtiquetas"
+              type="text"
+              placeholder="Etiquetas..."
+              v-model="noteEtiquetas"
+              class="w-full text-sm"
+              label-class="text-xs"
+            />
+          </div>
         </div>
         <GeneralInput
           label="Descripción"
@@ -100,7 +104,7 @@ const noteEtiquetas = ref("");
 const noteDescription = ref("");
 const noteType = ref("Sin Prioridad");
 const noteTimestamp = ref("");
-const noteFavorita = ref(false); // Añadido
+const noteFavorita = ref(false); 
 const modalSection = ref(null);
 
 watch(() => props.noteData, (newData) => {

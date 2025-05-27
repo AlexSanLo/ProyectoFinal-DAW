@@ -12,10 +12,10 @@
       <hr class="border-2 border-[var(--color-blue)] dark:border-[var(--color-blue-strong)] w-44 mt-1" />
     </div>
     <div
-      class="flex flex-col md:flex-row items-center gap-4 md:gap-6 md:justify-center overflow-x-auto md:overflow-x-visible px-3 md:px-0 lg:w-auto w-full"
+      class="flex flex-col md:flex-row items-center gap-4 md:gap-6 md:justify-center px-3 md:px-0 lg:w-auto w-full"
     >
       <div
-        class="flex flex-row gap-2 md:gap-4 justify-center min-w-0 max-w-[500px] mx-auto"
+        class="flex flex-row gap-2 md:gap-4 justify-center min-w-0 w-full max-w-full md:max-w-[500px] mx-auto"
       >
         <GeneralSelect
           label="Prioridad"
@@ -23,7 +23,7 @@
           :options="['Todas', 'Sin Prioridad', 'Alta', 'Media', 'Baja']"
           v-model="selectedPriority"
           @change="emitFilter"
-          class="w-28 xs:w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
+          class="w-1/2 min-w-[110px] max-w-[180px] p-2 text-base md:w-44 md:p-5 md:text-base"
         />
         <GeneralSelect
           label="Etiquetas"
@@ -31,16 +31,16 @@
           :options="uniqueTags"
           v-model="selectedTag"
           @change="emitFilter"
-          class="w-28 xs:w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
+          class="w-1/2 min-w-[110px] max-w-[180px] p-2 text-base md:w-44 md:p-5 md:text-base"
         />
       </div>
       <div
-        class="flex flex-row gap-1 md:gap-4 justify-center items-center min-w-0 max-w-xs w-full md:max-w-[500px] md:mx-auto"
+        class="flex flex-row gap-1 md:gap-4 justify-center items-center min-w-0 w-full max-w-full md:max-w-[500px] md:mx-auto"
       >
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
-          class="mb-5 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base"
+          class="mb-5 md:mb-0 w-full sm:w-60 md:w-44 p-2 text-base md:p-5 md:text-base"
         />
         <!-- Botón de favoritos corregido -->
         <button

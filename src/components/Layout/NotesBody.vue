@@ -51,7 +51,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import ThemeToggle from "../ThemeToggle/ThemeToggle.vue"; // Importa el ThemeToggle
+import ThemeToggle from "../ThemeToggle/ThemeToggle.vue"; 
 import AddNoteModal from "../Modals/AddNoteModal.vue";
 import Filtros from "../Layout/Filtros.vue";
 import NotesList from "../Layout/NotesList.vue";

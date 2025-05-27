@@ -6,7 +6,7 @@
     v-else
     name="note-fade"
     tag="div"
-    class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 mt-0 w-full max-w-6xl mx-auto"
+    class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 mt-0 w-full max-w-6xl mx-auto justify-items-center"
   >
     <NoteCard 
       v-for="note in filteredNotes" 

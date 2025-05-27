@@ -40,25 +40,26 @@
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
-          class="mb-5 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
+          class="mb-5 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base"
         />
+        <!-- Botón de favoritos corregido -->
         <button
           @click="toggleShowFavorites"
           :aria-label="showFavorites ? 'Mostrar todas las notas' : 'Mostrar solo favoritas'"
-          class="p-1 rounded transition flex items-center mr-1 md:mr-3 md:mt-6 align-middle bg-transparent"
+          class="p-1 rounded transition flex items-center mr-1 md:mr-3 md:mt-6 bg-transparent"
           type="button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-7 h-7 md:w-8 md:h-8"
-            :class="showFavorites ? 'text-yellow-400' : 'text-gray-400 hover:text-yellow-400 transition'"
+            class="w-7 h-7 md:w-8 md:h-8 transition-colors"
+            :class="showFavorites ? 'text-yellow-400' : 'text-gray-400'"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
             <path d="M12 17.75l-6.172 3.245 1.179-6.873-5-4.873 6.9-1.002L12 2.25l3.093 6.997 6.9 1.002-5 4.873 1.179 6.873z"/>
           </svg>
         </button>
-        <div class="flex flex-row items-center gap-1 md:mt-6 align-middle">
+        <div class="flex flex-row items-center gap-1 md:mt-6">
           <span class="mr-1 text-xs md:text-base text-[var(--color-black)] dark:text-[var(--color-white)] whitespace-nowrap">Por fecha:</span>
           <button
             @click="setOrder('Más reciente')"

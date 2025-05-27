@@ -6,7 +6,12 @@
           <img src="../../../public/assets/Logo.png" alt="Logo" class="h-12 w-auto" />
         </a>
       </div>
-      <div class="font-semibold text-center">
+      <div
+        class="font-semibold text-center"
+        :class="{
+          'mr-3 md:mr-0': !isLoggedIn 
+        }"
+      >
         <h1 class="text-xl md:text-2xl font-bold">NoteEasy</h1>
       </div>
       <div class="flex items-center justify-end">

@@ -1,20 +1,26 @@
 <template>
   <div
     class="flex flex-col p-4 rounded-lg shadow-md
-      w-[95vw] max-w-sm md:max-w-md
-      min-h-[180px] md:min-h-[200px] relative mx-auto mb-8
-      bg-[var(--color-white)] dark:bg-[var(--color-grey)]
-      cursor-pointer"
+           w-[95vw] max-w-sm md:max-w-md
+           min-h-[180px] md:min-h-[200px] relative mx-auto mb-8
+           bg-[var(--color-white)] dark:bg-[var(--color-grey)]
+           cursor-pointer"
     @click="showDetail"
   >
+    <!-- Borde de prioridad -->
     <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"></div>
     
+    <!-- Botón de favoritos -->
     <div class="absolute top-2 right-2 z-20">
-      <button @click.stop="toggleFavorite" class="p-1 rounded-full focus:outline-none bg-transparent">
+      <button
+        @click.stop="toggleFavorite"
+        class="p-1 rounded-full focus:outline-none bg-transparent"
+        type="button"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-8 h-8"
-          :class="note.favorita ? 'text-yellow-400' : 'text-gray-400 hover:text-yellow-400 transition'"
+          class="w-8 h-8 transition-colors"
+          :class="note.favorita ? 'text-yellow-400' : 'text-gray-400'"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -23,12 +29,14 @@
       </button>
     </div>
 
+    <!-- Contenido de la tarjeta -->
     <div class="flex flex-col flex-grow ml-6 h-full justify-between relative z-10">
       <h3 class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0">
         {{ note.title }}
       </h3>
       <p
-        class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)] mt-2 whitespace-pre-line break-words break-all overflow-y-auto max-h-24"
+        class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)]
+               mt-2 whitespace-pre-line break-words break-all overflow-y-auto max-h-24"
       >
         {{ note.description }}
       </p>
@@ -42,16 +50,19 @@
       </div>
     </div>
 
+    <!-- Botones de editar y eliminar -->
     <div class="absolute bottom-3 right-3 flex gap-2 z-20">
       <button
         @click.stop="$emit('edit')"
-        class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-blue-strong)] dark:bg-[var(--color-blue-strong)] text-[var(--color-white)]"
+        class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-blue-strong)]
+               dark:bg-[var(--color-blue-strong)] text-[var(--color-white)]"
       >
         Editar
       </button>
       <button
         @click.stop="$emit('delete')"
-        class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-red)] text-[var(--color-white)]"
+        class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-red)]
+               text-[var(--color-white)]"
       >
         Eliminar
       </button>

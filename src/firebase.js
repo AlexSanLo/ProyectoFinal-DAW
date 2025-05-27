@@ -19,6 +19,5 @@ const db = initializeFirestore(app, {
   })
 });
 
-console.log("Firestore inicializado con intento de persistencia."); 
 
 export { db };

@@ -12,7 +12,7 @@
           'mr-3 md:mr-0': !isLoggedIn 
         }"
       >
-        <h1 class="text-xl md:text-2xl font-bold">NoteEasy</h1>
+        <h1 class="text-xl md:text-2xl dark:text-white font-bold">NoteEasy</h1>
       </div>
       <div class="flex items-center justify-end">
         <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-2 bg-[var(--color-white)] px-3 py-2 rounded-md shadow-md">

@@ -141,7 +141,6 @@ function editNoteById(id) {
 function toggleFavoriteById(id) {
   const note = notes.value.find(n => n.id === id);
   if (note) {
-
     const updatedNote = { ...note, favorita: !note.favorita };
     updateNote(updatedNote, id);
   }

@@ -31,14 +31,15 @@
           :options="['Alta', 'Media', 'Baja', 'Sin Prioridad']"
           v-model="noteType"
         />
-        <div class="flex gap-4">
+        <div class="flex gap-2 w-full">
           <GeneralInput
             label="Título"
             id="noteTitle"
             type="text"
             placeholder="Título..."
             v-model="noteTitle"
-            class="flex-1"
+            class="w-1/2 min-w-0 truncate text-sm"
+            label-class="text-xs"
           />
           <GeneralInput
             label="Etiquetas"
@@ -46,7 +47,8 @@
             type="text"
             placeholder="Etiquetas..."
             v-model="noteEtiquetas"
-            class="flex-1"
+            class="w-1/2 min-w-0 truncate text-sm"
+            label-class="text-xs"
           />
         </div>
         <GeneralInput

@@ -42,7 +42,6 @@
           @input="emitSearch"
           class="mb-5 md:mb-0 w-full sm:w-60 md:w-44 p-2 text-base md:p-5 md:text-base"
         />
-        <!-- Botón de favoritos corregido -->
         <button
           @click="toggleShowFavorites"
           :aria-label="showFavorites ? 'Mostrar todas las notas' : 'Mostrar solo favoritas'"

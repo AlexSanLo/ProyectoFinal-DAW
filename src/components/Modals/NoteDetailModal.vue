@@ -23,7 +23,7 @@
         >&times;</button>
 
         
-        <div class="flex flex-col flex-grow overflow-y-auto pr-2 max-h-[300px]">
+        <div class="flex flex-col pr-2">
           <h3
             class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0 break-words whitespace-normal overflow-hidden pr-10"
             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; text-overflow: ellipsis;"
@@ -41,7 +41,7 @@
           </div>
 
           <p
-            class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)] mt-2 whitespace-pre-line break-words break-all overflow-y-auto pr-2"
+            class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)] mt-2 whitespace-pre-line break-words break-all overflow-y-auto pr-2 max-h-32"
             style="scrollbar-gutter: stable;"
           >
             {{ note.description || 'Sin contenido' }}

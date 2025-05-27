@@ -11,24 +11,20 @@
       :class="cardMinHeight"
       ref="modalRef"
     >
-      <div
-        :class="priorityClass"
-        class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"
-      ></div>
+      <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full z-10"></div>
 
       <div class="flex flex-col flex-grow ml-6 h-full justify-between relative z-10">
         <button
           @click="closeModal"
           class="absolute top-2 right-2 text-xl font-bold z-20 text-[var(--color-black)] dark:text-[var(--color-white)]"
         >&times;</button>
-
         
         <div class="flex flex-col pr-2">
           <h3
             class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0 break-words whitespace-normal overflow-hidden pr-10"
             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; text-overflow: ellipsis;"
             :title="note.title"
-            @click="showFullTitle"
+            @click.stop="showFullTitle"
           >
             {{ note.title || 'Sin título' }}
           </h3>
@@ -47,7 +43,6 @@
             {{ note.description || 'Sin contenido' }}
           </p>
         </div>
-
         
         <div class="mt-2 pr-36">
           <p
@@ -61,17 +56,19 @@
           </p>
         </div>
       </div>
-
+      
       <div class="absolute bottom-3 right-3 flex gap-2 z-20">
         <button
-          @click.stop="handleEdit"
-          class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-blue-strong)] dark:bg-[var(--color-blue-strong)] text-[var(--color-white)]"
+          @click.stop="$emit('edit')"
+          class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-blue-strong)]
+                 dark:bg-[var(--color-blue-strong)] text-[var(--color-white)]"
         >
           Editar
         </button>
         <button
-          @click.stop="handleDelete"
-          class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-red)] text-[var(--color-white)]"
+          @click.stop="$emit('delete')"
+          class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-red)]
+                 text-[var(--color-white)]"
         >
           Eliminar
         </button>
@@ -129,7 +126,8 @@ const priorityClass = computed(() => {
 });
 
 function showFullTitle() {
-  if (window.innerWidth < 768 && props.note.title) {
+  // Se verifica si el dispositivo soporta hover
+  if (window.matchMedia("(hover: hover)").matches && props.note.title) {
     showTooltip.value = true;
     setTimeout(() => {
       showTooltip.value = false;

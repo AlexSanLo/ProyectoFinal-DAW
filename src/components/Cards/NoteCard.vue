@@ -7,9 +7,7 @@
            cursor-pointer"
     @click="handleShowDetail"
   >
-
     <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full z-10"></div>
-
 
     <div class="absolute top-2 right-2 z-20">
       <button
@@ -28,7 +26,6 @@
         </svg>
       </button>
     </div>
-
 
     <div class="flex flex-col flex-grow ml-6 h-full justify-between relative z-10">
      
@@ -101,9 +98,12 @@ const emit = defineEmits(["delete", "edit", "toggleFavorite", "showDetail"]);
 const showTooltip = ref(false);
 
 function showFullTitle() {
-  if (window.innerWidth < 768 && props.note.title) {
+  // Solo se muestra el tooltip si el dispositivo admite hover (escritorio)
+  if (window.matchMedia("(hover: hover)").matches && props.note.title) {
     showTooltip.value = true;
-    setTimeout(() => { showTooltip.value = false }, 2500);
+    setTimeout(() => {
+      showTooltip.value = false;
+    }, 2500);
   }
 }
 

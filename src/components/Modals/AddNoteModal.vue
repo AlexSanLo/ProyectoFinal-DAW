@@ -8,7 +8,7 @@
     tabindex="0"
   >
     <div
-      class="p-8 rounded-lg w-[94vw] max-w-3xl md:w-full mx-auto relative
+      class="p-4 rounded-lg w-[95vw] max-w-md md:max-w-3xl mx-2 md:mx-auto relative
              bg-[var(--color-white)] dark:bg-[var(--color-semi-black)]
              border border-[var(--color-semi-black)] shadow-lg"
     >

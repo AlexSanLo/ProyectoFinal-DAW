@@ -40,13 +40,12 @@
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
-          class="mb-6 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
+          class="mb-2 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
         />
         <button
           @click="toggleShowFavorites"
           :aria-label="showFavorites ? 'Mostrar todas las notas' : 'Mostrar solo favoritas'"
-          class="p-1 rounded transition flex items-center mr-1 md:mr-3 md:mt-6 align-middle"
-          :class="showFavorites ? ' dark:bg-yellow-300' : 'hover:bg-[var(--color-grey)] dark:hover:bg-[var(--color-semi-black)]'"
+          class="p-1 rounded transition flex items-center mr-1 md:mr-3 md:mt-6 align-middle bg-transparent"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

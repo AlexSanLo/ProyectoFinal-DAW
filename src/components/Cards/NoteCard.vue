@@ -10,7 +10,7 @@
     <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"></div>
     
     <div class="absolute top-2 right-2 z-20">
-      <button @click.stop="toggleFavorite" class="p-1 rounded-full focus:outline-none">
+      <button @click.stop="toggleFavorite" class="p-1 rounded-full focus:outline-none bg-transparent">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-8 h-8"

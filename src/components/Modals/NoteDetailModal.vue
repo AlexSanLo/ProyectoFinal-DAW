@@ -5,8 +5,8 @@
   >
     <div
       class="flex flex-col p-4 rounded-lg shadow-md
-        w-[98vw] max-w-sm md:max-w-md
-        min-h-[180px] md:min-h-[200px] relative mx-auto mb-8
+        w-[95vw] max-w-sm md:max-w-md
+        min-h-[180px] md:min-h-[200px] relative mx-2 mb-8
         bg-[var(--color-white)] dark:bg-[var(--color-grey)]
         overflow-hidden"
       ref="modalRef"

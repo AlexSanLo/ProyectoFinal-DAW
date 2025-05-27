@@ -1,15 +1,15 @@
 <template>
   <header class="bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)]">
-    <section class="container mx-auto w-full px-3 py-2 flex flex-wrap items-center justify-between gap-2 relative">
-      <div class="flex items-center flex-shrink-0">
+    <section class="container mx-auto w-full px-3 py-2 grid grid-cols-3 items-center gap-2 relative">
+      <div class="flex items-center justify-start">
         <a href="index.html" class="ml-2">
           <img src="../../../public/assets/Logo.png" alt="Logo" class="h-12 w-auto" />
         </a>
       </div>
-      <div class="font-semibold text-center flex-1 min-w-[120px]">
+      <div class="font-semibold text-center">
         <h1 class="text-xl md:text-2xl font-bold">NoteEasy</h1>
       </div>
-      <div class="flex items-center flex-shrink-0">
+      <div class="flex items-center justify-end">
         <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-2 bg-[var(--color-white)] px-3 py-2 rounded-md shadow-md">
           Login/Register
         </button>

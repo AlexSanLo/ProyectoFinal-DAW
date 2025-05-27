@@ -1,13 +1,15 @@
 <template>
-  <div class="w-64">
-    <label for="searchBox" class="text-[var(--color-black)] dark:text-[var(--color-white)]">Buscar notas:</label>
+  <div class="w-full">
+    <label for="searchBox" class="block mb-1 text-[var(--color-black)] dark:text-[var(--color-white)]">
+      Buscar notas:
+    </label>
     <input 
       id="searchBox"
       type="text"
       v-model="searchValue"
       @input="emitSearch"
       placeholder="Buscar..."
-      class="border border-[var(--color-black)] rounded-2xl mt-2 p-2 text-base w-full bg-[var(--color-white)] text-[var(--color-black)] dark:bg-[var(--color-white)] dark:text-[var(--color-black)]"
+      class="border border-[var(--color-black)] rounded-2xl p-2 text-base w-full bg-[var(--color-white)] text-[var(--color-black)] dark:bg-[var(--color-white)] dark:text-[var(--color-black)]"
     />
   </div>
 </template>

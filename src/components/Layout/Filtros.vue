@@ -40,7 +40,7 @@
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
-          class="w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
+          class="mb-6 md:mb-0 w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
         />
         <button
           @click="toggleShowFavorites"

@@ -89,7 +89,7 @@ const priorityClass = computed(() => {
     case "Baja":
       return "bg-[var(--color-blue-medium)]";
     default:
-      return "bg-[var(--color-semi-black)]";
+      return "bg-gray-500 dark:bg-gray-500";
   }
 });
 

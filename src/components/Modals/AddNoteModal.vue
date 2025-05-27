@@ -53,6 +53,7 @@
               class="w-full text-sm"
               label-class="text-xs"
             />
+            <sub class="block text-xs text-gray-500 mt-1">Separadas por coma (,)</sub>
           </div>
         </div>
         <GeneralInput

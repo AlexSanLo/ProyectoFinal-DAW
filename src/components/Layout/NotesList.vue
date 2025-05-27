@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-6xl mx-auto">
+  <div class="w-full max-w-6xl mx-auto px-2 sm:px-4 md:px-8">
     <div v-if="filteredNotes.length === 0" class="mt-10 mb-10 text-center text-[var(--color-semi-black)] dark:text-[var(--color-grey)] text-lg">
       ¡No hay notas aún! Pulsa el botón "+" para agregar tu primera nota.
     </div>

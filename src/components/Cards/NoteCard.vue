@@ -31,17 +31,22 @@
 
 
     <div class="flex flex-col flex-grow ml-6 h-full justify-between relative z-10">
-      <h3 class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0">
+      <h3
+        class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0 overflow-hidden whitespace-nowrap text-ellipsis pr-12"
+        style="text-overflow: ellipsis; overflow-wrap: normal;"
+      >
         {{ note.title }}
       </h3>
       <p
         class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)]
-               mt-2 whitespace-pre-line break-words break-all overflow-y-auto max-h-24"
+               mt-2 whitespace-pre-line break-words overflow-y-auto max-h-24"
       >
         {{ note.description }}
       </p>
       <div class="flex flex-col mt-auto">
-        <p class="text-sm text-[var(--color-semi-black)] dark:text-[var(--color-semi-black)]">
+        <p class="text-sm text-[var(--color-semi-black)] dark:text-[var(--color-semi-black)]
+               truncate overflow-hidden whitespace-nowrap max-w-[50%]"
+        >
           {{ note.etiquetas }}
         </p>
         <p class="text-xs text-[var(--color-semi-black)] dark:text-[var(--color-semi-black)]">

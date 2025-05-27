@@ -5,11 +5,11 @@
            min-h-[180px] md:min-h-[200px] relative mb-8
            bg-[var(--color-white)] dark:bg-[var(--color-grey)]
            cursor-pointer"
-    @click="showDetail"
+    @click="handleShowDetail"
   >
 
-    <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full"></div>
-    
+    <div :class="priorityClass" class="absolute left-0 top-0 bottom-0 w-4 rounded-l-lg h-full z-10"></div>
+
 
     <div class="absolute top-2 right-2 z-20">
       <button
@@ -31,21 +31,35 @@
 
 
     <div class="flex flex-col flex-grow ml-6 h-full justify-between relative z-10">
+     
       <h3
         class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0 overflow-hidden whitespace-nowrap text-ellipsis pr-12"
         style="text-overflow: ellipsis; overflow-wrap: normal;"
+        :title="note.title"
+        @click.stop="showFullTitle"
       >
         {{ note.title }}
       </h3>
+      <div
+        v-if="showTooltip"
+        class="fixed left-1/2 top-1/4 transform -translate-x-1/2 bg-white text-black p-2 rounded shadow z-50"
+        @click="showTooltip = false"
+      >
+        {{ note.title }}
+      </div>
+
       <p
         class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)]
                mt-2 whitespace-pre-line break-words overflow-y-auto max-h-24"
       >
         {{ note.description }}
       </p>
+
       <div class="flex flex-col mt-auto">
-        <p class="text-sm text-[var(--color-semi-black)] dark:text-[var(--color-semi-black)]
-               truncate overflow-hidden whitespace-nowrap max-w-[50%]"
+        <p
+          class="text-sm text-[var(--color-semi-black)] dark:text-[var(--color-semi-black)]
+                 truncate overflow-hidden whitespace-nowrap max-w-[50%]"
+          :title="note.etiquetas"
         >
           {{ note.etiquetas }}
         </p>
@@ -54,7 +68,6 @@
         </p>
       </div>
     </div>
-
 
     <div class="absolute bottom-3 right-3 flex gap-2 z-20">
       <button
@@ -76,7 +89,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, computed } from "vue";
+import { defineProps, defineEmits, computed, ref } from "vue";
 import { formatDate } from "../../composables/useDate"; 
 
 const props = defineProps({
@@ -84,6 +97,23 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["delete", "edit", "toggleFavorite", "showDetail"]);
+
+const showTooltip = ref(false);
+
+function showFullTitle() {
+  if (window.innerWidth < 768 && props.note.title) {
+    showTooltip.value = true;
+    setTimeout(() => { showTooltip.value = false }, 2500);
+  }
+}
+
+function handleShowDetail() {
+  emit("showDetail", props.note);
+}
+
+function toggleFavorite() {
+  emit("toggleFavorite", props.note.id);
+}
 
 const priorityClass = computed(() => {
   switch (props.note.priority) {
@@ -97,12 +127,4 @@ const priorityClass = computed(() => {
       return "bg-gray-500";
   }
 });
-
-function showDetail() {
-  emit("showDetail", props.note);
-}
-
-function toggleFavorite() {
-  emit("toggleFavorite", props.note);
-}
 </script>

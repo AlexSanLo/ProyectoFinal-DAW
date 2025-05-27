@@ -1,19 +1,19 @@
 <template>
   <header class="bg-[var(--color-blue-medium)] dark:bg-[var(--color-blue-strong)]">
-    <section class="container mx-auto w-full px-3 py-2 flex items-center justify-between relative">
-      <div class="flex items-center">
-        <a href="index.html" class="ml-4">
-          <img src="../../../public/assets/Logo.png" alt="Logo" class="h-16 w-auto" />
+    <section class="container mx-auto w-full px-3 py-2 flex flex-wrap items-center justify-between gap-2 relative">
+      <div class="flex items-center flex-shrink-0">
+        <a href="index.html" class="ml-2">
+          <img src="../../../public/assets/Logo.png" alt="Logo" class="h-12 w-auto" />
         </a>
       </div>
-      <div class="font-semibold text-center">
-        <h1 class="text-2xl font-bold">NoteEasy</h1>
+      <div class="font-semibold text-center flex-1 min-w-[120px]">
+        <h1 class="text-xl md:text-2xl font-bold">NoteEasy</h1>
       </div>
-      <div class="flex items-center">
-        <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-4 bg-[var(--color-white)] px-4 py-2 rounded-md shadow-md">
+      <div class="flex items-center flex-shrink-0">
+        <button v-if="!isLoggedIn" @click="openLoginModal" class="mr-2 bg-[var(--color-white)] px-3 py-2 rounded-md shadow-md">
           Login/Register
         </button>
-        <button v-else @click="handleLogout" class="mr-4 bg-[var(--color-red)] text-[var(--color-white)] px-4 py-2 rounded-md shadow-md">
+        <button v-else @click="handleLogout" class="mr-2 bg-[var(--color-red)] text-[var(--color-white)] px-3 py-2 rounded-md shadow-md">
           Logout
         </button>
       </div>

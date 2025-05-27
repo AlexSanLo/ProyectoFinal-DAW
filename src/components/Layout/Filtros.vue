@@ -1,7 +1,9 @@
 <template>
-  <div class="flex flex-col lg:flex-row items-center justify-center gap-2 pb-2 bg-[var(--color-grey-page)] dark:bg-[var(--color-black)] xs:gap-1 xs:p-2">
-    <div class="w-full flex flex-col items-center justify-center h-full mb-1 lg:mr-10">
-      <h2 class="text-3xl font-semibold text-[var(--color-black)] dark:text-[var(--color-white)] mt-5 whitespace-nowrap text-center">
+  <div
+    class="flex flex-col lg:flex-row items-center justify-center gap-2 pb-2 bg-[var(--color-grey-page)] dark:bg-[var(--color-black)] w-full"
+  >
+    <div class="flex flex-col items-center justify-center h-full mb-1 lg:mb-0 lg:mr-6 lg:w-auto w-full">
+      <h2 class="text-3xl font-semibold text-[var(--color-black)] dark:text-[var(--color-white)] mt-2 whitespace-nowrap text-center">
         Notas creadas
       </h2>
       <span class="text-xs text-[var(--color-semi-black)] dark:text-[var(--color-grey)] mt-1 text-center opacity-70">
@@ -9,15 +11,19 @@
       </span>
       <hr class="border-2 border-[var(--color-blue)] dark:border-[var(--color-blue-strong)] w-44 mt-1" />
     </div>
-    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:justify-center">
-      <div class="flex flex-row gap-2 md:gap-4 w-full justify-center">
+    <div
+      class="flex flex-col md:flex-row items-center gap-4 md:gap-6 md:justify-center overflow-x-auto md:overflow-x-visible px-3 md:px-0 lg:w-auto w-full"
+    >
+      <div
+        class="flex flex-row gap-2 md:gap-4 justify-center min-w-0 max-w-[500px] mx-auto"
+      >
         <GeneralSelect
           label="Prioridad"
           id="priorityFilter"
           :options="['Todas', 'Sin Prioridad', 'Alta', 'Media', 'Baja']"
           v-model="selectedPriority"
           @change="emitFilter"
-          class="w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
+          class="w-28 xs:w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
         />
         <GeneralSelect
           label="Etiquetas"
@@ -25,19 +31,21 @@
           :options="uniqueTags"
           v-model="selectedTag"
           @change="emitFilter"
-          class="w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
+          class="w-28 xs:w-32 p-2 text-base md:w-44 md:p-5 md:text-base"
         />
       </div>
-      <div class="flex flex-row gap-2 w-full justify-center items-center">
+      <div
+        class="flex flex-row gap-1 md:gap-4 justify-center items-center min-w-0 max-w-xs w-full md:max-w-[500px] md:mx-auto"
+      >
         <SearchInput
           v-model="searchQuery"
           @input="emitSearch"
-          class="w-40 p-2 text-base md:w-60 md:p-5 md:text-base"
+          class="w-32 sm:w-36 md:w-60 p-2 text-base md:p-5 md:text-base align-middle"
         />
         <button
           @click="toggleShowFavorites"
           :aria-label="showFavorites ? 'Mostrar todas las notas' : 'Mostrar solo favoritas'"
-          class="p-1 rounded transition flex items-center mt-6 mr-3"
+          class="p-1 rounded transition flex items-center mr-1 md:mr-3 md:mt-6 align-middle"
           :class="showFavorites ? ' dark:bg-yellow-300' : 'hover:bg-[var(--color-grey)] dark:hover:bg-[var(--color-semi-black)]'"
         >
           <svg
@@ -50,8 +58,8 @@
             <path d="M12 17.75l-6.172 3.245 1.179-6.873-5-4.873 6.9-1.002L12 2.25l3.093 6.997 6.9 1.002-5 4.873 1.179 6.873z"/>
           </svg>
         </button>
-        <div class="flex flex-row items-center gap-1 mt-6">
-          <span class="mr-2 text-sm md:text-base text-[var(--color-black)] dark:text-[var(--color-white)] whitespace-nowrap">Por fecha:</span>
+        <div class="flex flex-row items-center gap-1 md:mt-6 align-middle">
+          <span class="mr-1 text-xs md:text-base text-[var(--color-black)] dark:text-[var(--color-white)] whitespace-nowrap">Por fecha:</span>
           <button
             @click="setOrder('Más reciente')"
             :aria-label="'Ordenar por más reciente'"

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center pb-40 md:pb-0 w-full bg-[var(--color-grey-page)] dark:bg-[var(--color-black)]">
+  <div class="flex flex-col items-center pb-40 md:pb-0 w-full max-w-full overflow-x-hidden bg-[var(--color-grey-page)] dark:bg-[var(--color-black)]">
     <ThemeToggle /> 
     <button
       @click="openModal(null, null)"

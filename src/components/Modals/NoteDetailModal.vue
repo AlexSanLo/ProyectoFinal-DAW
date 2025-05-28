@@ -24,18 +24,10 @@
             class="text-2xl font-bold text-[var(--color-blue-strong)] dark:text-[var(--color-blue-strong)] mt-0 break-words whitespace-normal overflow-hidden pr-10"
             style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; text-overflow: ellipsis;"
             :title="note.title"
-            @click.stop="showFullTitle"
           >
             {{ note.title || 'Sin título' }}
           </h3>
-          <div
-            v-if="showTooltip"
-            class="fixed left-1/2 top-1/4 transform -translate-x-1/2 bg-white text-black p-2 rounded shadow z-50"
-            @click="showTooltip = false"
-          >
-            {{ note.title }}
-          </div>
-
+          
           <p
             class="mb-3 text-md text-[var(--color-black)] dark:text-[var(--color-black)] mt-2 whitespace-pre-line break-words break-all overflow-y-auto pr-2 max-h-32"
             style="scrollbar-gutter: stable;"
@@ -85,6 +77,7 @@ const props = defineProps({ note: Object });
 const emit = defineEmits(["close", "edit", "delete"]);
 
 const modalRef = ref(null);
+
 const showTooltip = ref(false);
 
 const closeModal = () => emit("close");
@@ -125,15 +118,6 @@ const priorityClass = computed(() => {
   }
 });
 
-function showFullTitle() {
-  // Se verifica si el dispositivo soporta hover
-  if (window.matchMedia("(hover: hover)").matches && props.note.title) {
-    showTooltip.value = true;
-    setTimeout(() => {
-      showTooltip.value = false;
-    }, 2500);
-  }
-}
 
 const cardMinHeight = computed(() => {
   const title = props.note.title || "";

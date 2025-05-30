@@ -51,7 +51,7 @@
       
       <div class="absolute bottom-3 right-3 flex gap-2 z-20">
         <button
-          @click.stop="$emit('edit')"
+          @click.stop="handleEdit"
           class="px-3 py-2 rounded-md text-sm hover:opacity-90 bg-[var(--color-blue-strong)]
                  dark:bg-[var(--color-blue-strong)] text-[var(--color-white)]"
         >
@@ -78,8 +78,6 @@ const emit = defineEmits(["close", "edit", "delete"]);
 
 const modalRef = ref(null);
 
-const showTooltip = ref(false);
-
 const closeModal = () => emit("close");
 
 const handleEscape = (e) => {
@@ -100,11 +98,6 @@ const handleEdit = () => {
   emit("close");
 };
 
-const handleDelete = () => {
-  emit("delete", props.note);
-  emit("close");
-};
-
 const priorityClass = computed(() => {
   switch (props.note.priority) {
     case "Alta":
@@ -117,7 +110,6 @@ const priorityClass = computed(() => {
       return "bg-gray-500";
   }
 });
-
 
 const cardMinHeight = computed(() => {
   const title = props.note.title || "";
